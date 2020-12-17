@@ -43,10 +43,9 @@ void lps25hb_get_pressure(float *p)
 void lps25hb_get_altitude(float *h)
 {
 	const float scale = 4096.0, R = 8.3145, M = 0.029, g = 9.8067, T0 = 288.16, p0 = 1013.25;
-	uint8_t data[3];
+	float p = 0.0;
 
-    lps25hb_read(data, LPS25HB_PRESS_OUT_XL_ADDRESS, 3, 1);
-	float p = ((int32_t)(data[2] << 16) | (data[1] << 8) | data[0])/scale;
+	lps25hb_get_pressure(&p);
 	*h = R*T0/(M*g)*log(p0/p);
 }
 

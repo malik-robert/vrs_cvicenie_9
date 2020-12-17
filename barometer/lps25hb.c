@@ -42,7 +42,7 @@ void lps25hb_get_pressure(float *p)
 
 void lps25hb_get_altitude(float *h)
 {
-	const float scale = 4096.0, R = 8.3145, M = 0.029, g = 9.8067, T0 = 288.16, p0 = 1013.25;
+	const float R = 8.3145, M = 0.029, g = 9.8067, T0 = 288.16, p0 = 1013.25;
 	float p = 0.0;
 
 	lps25hb_get_pressure(&p);

@@ -49,7 +49,6 @@ void lis3mdl_get_magnetic_induction(float *B)
 void lis3mdl_get_azimuth(float *phi)
 {
 	const float phase = 90.0, cf = 180.0/M_PI;
-	uint8_t data[6];
 	float B[3] = {0, 0, 0};
 
 	lis3mdl_get_magnetic_induction(B);

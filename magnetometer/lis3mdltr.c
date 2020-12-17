@@ -48,16 +48,11 @@ void lis3mdl_get_magnetic_induction(float *B)
 
 void lis3mdl_get_azimuth(float *phi)
 {
-	const float scale = 6842.0, phase = 90.0, cf = 180.0/M_PI;
+	const float phase = 90.0, cf = 180.0/M_PI;
 	uint8_t data[6];
 	float B[3] = {0, 0, 0};
 
-	lis3mdl_read(data, LIS3MDL_ADDRESS_XL, 6, 1);
-
-	B[0] = ((int16_t)(data[1] << 8) | data[0])/scale;
-	B[1] = ((int16_t)(data[3] << 8) | data[2])/scale;
-	B[2] = ((int16_t)(data[5] << 8) | data[4])/scale;
-
+	lis3mdl_get_magnetic_induction(B);
 	*phi = phase + atan2(B[1], B[0])*cf;
 }
 
